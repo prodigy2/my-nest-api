@@ -1,3 +1,93 @@
+# My Nest API
+
+Un'API RESTful realizzata con **NestJS** e **PostgreSQL**, completamente containerizzata con **Docker**. Questo progetto fornisce funzionalità di autenticazione utenti, gestione dei post e altre operazioni CRUD. 
+
+## Requisiti
+
+Per eseguire il progetto, avrai bisogno di:
+
+- **Docker** e **Docker Compose** installati sul tuo sistema.
+
+## Clonare il Progetto
+
+Per iniziare, clona il repository del progetto sulla tua macchina locale eseguendo il seguente comando:
+
+git clone https://github.com/tuo-username/my-nest-api.git cd my-nest-api
+
+## Configurazione e Avvio con Docker
+
+Il progetto è già configurato per essere eseguito tramite Docker. Segui questi passaggi:
+
+1. **Creare e avviare il container Docker con PostgreSQL e l'applicazione NestJS:**
+
+    Esegui il comando seguente per costruire e avviare i container tramite **Docker Compose**:
+
+    ```
+    docker-compose up --build
+    ```
+
+    Questo comando farà partire due container:
+    - Un container per il database **PostgreSQL**.
+    - Un container per l'applicazione **NestJS**.
+
+    Il parametro `--build` forzerà la ricostruzione delle immagini Docker se hai modificato il codice o i file di configurazione.
+
+2. **Verifica che i container siano in esecuzione:**
+
+    Puoi verificare che i container siano in esecuzione con il comando:
+
+    ```
+    docker ps
+    ```
+
+    Dovresti vedere il container di PostgreSQL e il container dell'applicazione NestJS elencati.
+
+3. **Accedere al database (opzionale):**
+
+    Se desideri interagire con il database PostgreSQL nel container, puoi entrare nel container e usare `psql` con il seguente comando:
+
+    ```
+    docker exec -it <nome-container-postgresql> psql -U postgres
+    ```
+
+    Sostituisci `<nome-container-postgresql>` con l'ID del container di PostgreSQL che puoi trovare con il comando `docker ps`.
+
+## Test delle API con Swagger
+
+Una volta che il server è avviato, puoi testare le API utilizzando **Swagger**. Vai all'indirizzo:
+
+http://localhost:3000/api
+
+
+
+Swagger ti permetterà di testare facilmente le API, tra cui la creazione di utenti, la gestione dei post e altro. Puoi anche provare le rotte protette autenticandoti.
+
+## Autenticazione e Autorizzazione
+
+Le API sono protette da un sistema di autenticazione basato su **JWT (JSON Web Token)**. Ecco come puoi testare l'autenticazione:
+
+1. **Registrazione di un nuovo utente:**
+
+    Usa la rotta `POST /users/register` per registrare un nuovo utente. Inserisci i dati necessari nel corpo della richiesta (ad esempio, email e password).
+
+2. **Login dell'utente:**
+
+    Una volta registrato l'utente, puoi utilizzare la rotta `POST /auth/login` per ottenere un token JWT. Passa le credenziali (email e password) nel corpo della richiesta.
+
+3. **Accedere alle rotte protette:**
+
+    Usa il token JWT ottenuto nel login per autorizzare le tue richieste. Puoi includerlo nell'intestazione `Authorization` come `Bearer <token>`.
+
+## Contribuire
+
+Se desideri contribuire a questo progetto, sentiti libero di aprire una **pull request**. Assicurati di seguire le linee guida di stile e di testare il codice prima di inviarlo.
+
+## Licenza
+
+Questo progetto è concesso sotto la **MIT License**. Vedi il file [LICENSE](LICENSE) per maggiori dettagli.
+
+<hr>
+Original default readme file:
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
